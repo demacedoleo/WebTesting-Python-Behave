@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects xmlns="http://www.springframework.org/springpython/schema/objects"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
+       		http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
+
+    <object id="ArgParser" class="utils.argument_parser.ArgumentParser" scope="singleton" lazy-init="True" />
+
+    <object id="WebDriver" class="driver.web_driver_provider.WebDriverProvider" scope="singleton" lazy-init="True">
+        <property name="browser" value="Firefox"/>
+    </object>
+
+</objects>
