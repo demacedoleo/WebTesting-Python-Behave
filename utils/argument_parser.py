@@ -1,4 +1,4 @@
-__author__ = 'ldemacex'
+__author__ = 'Leonardo De Macedo'
 
 import os
 import sys
@@ -8,6 +8,9 @@ from springpython.config import Object
 
 
 class ArgumentParser(object):
+    """
+    Class in charge of parse arguments and re build behave tags
+    """
 
     def __init__(self):
         self.parser = argparse.ArgumentParser()
@@ -18,16 +21,19 @@ class ArgumentParser(object):
         self.parser.add_argument('-t', '--tags', action="append", dest="tags", help='tags', required=False)
         self.parser.parse_args(sys.argv[1:])
 
-    def get_argument(self):
-        return self.parser.parse_args().browser
-
     def set_up_environment_variables(self):
+        """
+        Used to set variables and define the environment
+        """
         args = vars(self.parser.parse_args())
         for key, value in args.iteritems():
             if key != "tags":
                 os.environ[key] = value
 
     def recovery_behave_args(self):
+        """
+        Used to set tags according the behave framework
+        """
         tags = vars(self.parser.parse_args())
         del sys.argv[1:]
 
@@ -40,6 +46,9 @@ class ArgumentParser(object):
 
 
 class ArgumentParserContext(PythonConfig):
+    """
+    Used to set the ArgumentParser into spring container
+    """
 
     def __init__(self):
         super(ArgumentParserContext, self).__init__()

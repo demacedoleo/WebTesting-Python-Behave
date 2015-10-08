@@ -16,6 +16,7 @@ def setup_debug_on_error(userdata):
 def before_all(context):
     configuration = XMLConfig("resources/spring/application-context.xml")
     context.spring = ApplicationContext(configuration)
+    context.spring.get_object("LandingPageImpl")
     context.browser = os.environ['browser']
 
 
@@ -24,7 +25,6 @@ def before_scenario(context, scenario):
 
 
 def after_scenario(context, scenario):
-    scenario
     quit_web_driver(context)
 
 

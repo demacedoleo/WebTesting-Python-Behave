@@ -5,11 +5,10 @@ from driver.web_driver_provider import WebDriverProvider
 from pages.landing_page_po import LandingPageImpl
 from selenium import webdriver
 
-@Given(u'The user open "{url}"')
+@Given(u'A googler open the "{url}"')
 def step_impl(context, url):
-    context.driver = WebDriverProvider(context.browser)
-    context.landing_page = LandingPageImpl(context.driver)
-    #context.landing_page.open_url(url)
+    context.landing_page = context.spring.get_object("LandingPageImpl")
+    context.landing_page.open_url(url)
 
 
 @When(u'Search to get information about "{key_word}"')

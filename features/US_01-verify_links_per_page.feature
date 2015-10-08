@@ -11,6 +11,6 @@ Feature: Verify amount links is displayed by search
 
   @Regression
   Scenario: The user find links according your search
-    Given The user open "http://www.google.com"
+    Given A googler open the "http://www.google.com"
     When Search to get information about "behave"
     Then Verify that web page contains at least "5" links

@@ -6,6 +6,9 @@ from common.selenium_base_page import BasePage
 
 
 class LandingPageImpl(BasePage):
+    """
+    Page Object in charge of interact with google search
+    """
 
     INPUT_SEARCH = (By.XPATH, "//input[@name='q']")
 

@@ -8,4 +8,8 @@
         <property name="browser" value="Firefox"/>
     </object>
 
+    <object id="LandingPageImpl" class="pages.landing_page_po.LandingPageImpl" scope="singleton" lazy-init="True">
+        <property name="web_driver" ref="WebDriver"/>
+    </object>
+
 </objects>
