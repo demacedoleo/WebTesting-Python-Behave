@@ -2,10 +2,10 @@ __author__ = 'ldemacex'
 
 
 from selenium.webdriver.common.by import By
-from Project.common.selenium_base_page import SeleniumBasePage
+from common.selenium_base_page import BasePage
 
 
-class LandingPageImpl(SeleniumBasePage):
+class LandingPageImpl(BasePage):
 
     INPUT_SEARCH = (By.XPATH, "//input[@name='q']")
 

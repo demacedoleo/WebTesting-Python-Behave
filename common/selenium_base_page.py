@@ -10,5 +10,5 @@ class BasePage(object):
         self.driver.get(url)
 
     def quit(self):
-        self.driver.quit()
+        self.driver.driver.quit()
 

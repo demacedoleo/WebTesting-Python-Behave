@@ -1,30 +1,50 @@
 __author__ = 'ldemacex'
 
+import os
 import sys
 import argparse
+from springpython.config import PythonConfig
+from springpython.config import Object
 
 
 class ArgumentParser(object):
 
     def __init__(self):
         self.parser = argparse.ArgumentParser()
-        self.parser.add_argument('-b',
-                            '--browser',
-                            default="firefox",
-                            choices=['firefox', 'chrome', 'ie', 'phantomjs'],
-                            dest="browser",
-                            help='firefox, \
-                            chrome, \
-                            ie (internet_explorer, \
-                            only available in selenium grid),\
-                            phantomjs (Default: firefox). \
-                            No aditional actions are required to use \
-                            this argument, if needed this is accessible from \
-                            the testing solution using the "BROWSER" \
-                            environment variable',
-                            required=False)
+        self.parser.add_argument('-b', '--browser', default="chrome", dest="browser", help='browser', required=False)
+        self.parser.add_argument('-u', '--url', default="host", dest="host", help='host', required=False)
+        self.parser.add_argument('-p', '--port', default="port", dest="port", help='port', required=False)
+        self.parser.add_argument('-e', '--env', default="env", dest="env", help='env', required=False)
+        self.parser.add_argument('-t', '--tags', action="append", dest="tags", help='tags', required=False)
         self.parser.parse_args(sys.argv[1:])
-        pass
 
     def get_argument(self):
         return self.parser.parse_args().browser
+
+    def set_up_environment_variables(self):
+        args = vars(self.parser.parse_args())
+        for key, value in args.iteritems():
+            if key != "tags":
+                os.environ[key] = value
+
+    def recovery_behave_args(self):
+        tags = vars(self.parser.parse_args())
+        del sys.argv[1:]
+
+        if tags['tags'] is not None:
+            for tag in tags['tags']:
+                sys.argv.append('--tags')
+                sys.argv.append(tag)
+                if tag.upper() in ["WIP", "@WIP"]:
+                    run_wip_tests = True
+
+
+class ArgumentParserContext(PythonConfig):
+
+    def __init__(self):
+        super(ArgumentParserContext, self).__init__()
+
+    @Object(lazy_init=True)
+    def ArgumentParser(self):
+        parser = ArgumentParser()
+        return parser
