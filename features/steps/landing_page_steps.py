@@ -8,7 +8,7 @@ from behave import Given, When, Then
 def step_impl(context, url):
     context.pages = dict()
     context.pages["landing_page"] = context.container.get_object("LandingPageImpl")
-    context.pages["landing_page"].open_url("http://www.google.com")
+    context.pages["landing_page"].open_url(url)
 
 
 @When(u'Search to get information about "{key_word}"')
