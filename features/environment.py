@@ -1,28 +1,18 @@
-__author__ = 'ldemacex'
+__author__ = 'Leonardo De Macedo'
 
-import os
+
 from springpython.config import XMLConfig
 from springpython.context import ApplicationContext
 
 
-BEHAVE_DEBUG_ON_ERROR = True
-
-
-def setup_debug_on_error(userdata):
-    global BEHAVE_DEBUG_ON_ERROR
-    BEHAVE_DEBUG_ON_ERROR = userdata.getbool("BEHAVE_DEBUG_ON_ERROR")
-
-
 def before_all(context):
     configuration = XMLConfig("resources/spring/application-context.xml")
-    context.spring = ApplicationContext(configuration)
-    context.spring.get_object("LandingPageImpl")
-    context.browser = os.environ['browser']
+    context.container = ApplicationContext(configuration)
 
 
 def before_scenario(context, scenario):
     context.driver = None
-
+    
 
 def after_scenario(context, scenario):
     quit_web_driver(context)

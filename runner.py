@@ -1,10 +1,9 @@
-__author__ = 'ldemacex'
+__author__ = 'Leonardo De Macedo'
 
-import os
-import sys
+
 from behave import __main__ as runner
-from utils.argument_parser import ArgumentParserContext
 from springpython.context import ApplicationContext
+from utils.argument_parser import ArgumentParserContext
 
 
 def init_context():
