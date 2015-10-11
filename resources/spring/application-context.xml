@@ -4,12 +4,14 @@
          xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
        		http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
 
-    <object id="WebDriver" class="driver.web_driver_provider.WebDriverProvider" scope="singleton" lazy-init="True">
-        <property name="browser" value="Firefox"/>
+    <object id="WebDriver" class="driver.web_driver_provider.WebDriverProvider" scope="singleton" lazy-init="True" />
+
+    <object id="BasePage" class="common.selenium_base_page.BasePage" scope="singleton" lazy-init="True">
+        <constructor-arg><ref object="WebDriver"/></constructor-arg>
     </object>
 
     <object id="LandingPageImpl" class="pages.landing_page_po.LandingPageImpl" scope="singleton" lazy-init="True">
-        <property name="web_driver" ref="WebDriver"/>
+        <constructor-arg><ref object="WebDriver"/></constructor-arg>
     </object>
 
 </objects>
