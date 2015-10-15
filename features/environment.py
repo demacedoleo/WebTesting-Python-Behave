@@ -18,6 +18,10 @@ def after_scenario(context, scenario):
     quit_web_driver(context)
 
 
+def after_step(context, step):
+    context.driver
+
+
 def quit_web_driver(context):
     if context.driver is not None:
-        pass
+        context.driver.quit()

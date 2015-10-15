@@ -9,7 +9,7 @@ Feature: Verify amount links is displayed by search
   .  * It is a base project to start automation with python and behave
   .  * Implement the page object pattern with spring python
 
-  @Regression
+  @parameter
   Scenario: The user find links according your search
     Given A googler open the "http://www.google.com"
     When Search to get information about "behave"

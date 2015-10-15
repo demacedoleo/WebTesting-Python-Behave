@@ -6,11 +6,7 @@
 
     <object id="WebDriver" class="driver.web_driver_provider.WebDriverProvider" scope="singleton" lazy-init="True" />
 
-    <object id="BasePage" class="common.selenium_base_page.BasePage" scope="singleton" lazy-init="True">
-        <constructor-arg><ref object="WebDriver"/></constructor-arg>
-    </object>
-
-    <object id="LandingPageImpl" class="pages.landing_page_po.LandingPageImpl" scope="singleton" lazy-init="True">
+    <object id="LandingPageImpl" class="pages.landing_page_po.LandingPageImpl" scope="prototype" lazy-init="True">
         <constructor-arg><ref object="WebDriver"/></constructor-arg>
     </object>
 
